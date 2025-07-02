@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Predictor</title>
+  <style>
+    :root {
+      --bg-dark: #0e0e0e;
+      --card-dark: #1a1a1a;
+      --accent: #ffa500;
+      --text-light: #ffffff;
+      --text-muted: #999999;
+
+      --bg-light: #ffffff;
+      --card-light: #f0f0f0;
+      --text-dark: #111111;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .phone-frame {
+      width: 375px;
+      height: 700px;
+      background-color: var(--bg-dark);
+      border-radius: 30px;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(255, 165, 0, 0.2);
+      padding: 20px;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    .phone-frame.light {
+      background-color: var(--bg-light);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .navbar h1 {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.3s ease;
+    }
+
+    .section {
+      background-color: var(--card-dark);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 12px rgba(255, 165, 0, 0.1);
+      transition: background 0.3s ease;
+    }
+
+    .light .section {
+      background-color: var(--card-light);
+    }
+
+    .section h2 {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .predict-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #ffa500, #ff6600);
+      border: none;
+      border-radius: 12px;
+      color: black;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .news-item {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: #ff3c3c;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .light .news-item,
+    .light .footer {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame" id="app">
+    <!-- Navbar -->
+    <div class="navbar">
+      <h1>📊 Stock App</h1>
+      <button class="toggle-btn" onclick="toggleTheme()">Toggle</button>
+    </div>
+
+    <!-- Sections -->
+    <div class="section">
+      <h2>📈 Prediction Center</h2>
+      <p>Ready to get your next predicted price?</p>
+      <!-- <form action="/predict" method="GET">
+         <button type="submit">Start Prediction</button>
+       </form> -->
+   
+      <form action="/predict" method="GET">
+        <button class="predict-btn">Predict Now ➜</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>📰 News & Insights</h2>
+      <div class="news-item">Apple Intelligence boosts Q4 results 🔍</div>
+      <div class="news-item">Markets bullish ahead of earnings 📊</div>
+    </div>
+
+    <div class="section">
+      <h2>🔒 Risk Overview</h2>
+      <p>Current Risk: <span class="highlight">Moderate</span></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      ⓒ 2025 Stock Predictor • All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      document.getElementById("app").classList.toggle("light");
+    }
+  </script>
+</body>
+</html>

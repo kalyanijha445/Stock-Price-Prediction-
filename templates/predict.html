@@ -1,0 +1,185 @@
+<!-- templates/predict.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predict Stock Price</title>
+  <style>
+    :root {
+      --bg-dark: #0e0e0e;
+      --card-dark: #1a1a1a;
+      --accent: #ffa500;
+      --text-light: #ffffff;
+      --text-muted: #999999;
+
+      --bg-light: #ffffff;
+      --card-light: #f0f0f0;
+      --text-dark: #111111;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+    }
+
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .phone-frame {
+      width: 375px;
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      border-radius: 30px 30px 0 0;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(255, 165, 0, 0.2);
+      padding: 20px;
+      transition: background 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .phone-frame.light {
+      background-color: var(--bg-light);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .navbar h1 {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .section {
+      background-color: var(--card-dark);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 12px rgba(255, 165, 0, 0.1);
+      transition: background 0.3s ease;
+    }
+
+    .light .section {
+      background-color: var(--card-light);
+    }
+
+    .section h2 {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .predict-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #ffa500, #ff6600);
+      border: none;
+      border-radius: 12px;
+      color: black;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .predict-btn:hover {
+      background: linear-gradient(to right, #ff8800, #ff4400);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 12px 0;
+    }
+
+    .light .footer {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame" id="app">
+    <div>
+      <!-- Navbar -->
+      <div class="navbar">
+        <h1>📊 Stock App</h1>
+        <button class="toggle-btn" onclick="toggleTheme()">Toggle</button>
+      </div>
+
+      <!-- Form Section -->
+      <div class="section">
+        <h2>📈 Enter Stock Details</h2>
+        <form action="/result" method="POST">
+          <label for="open">Open Price</label>
+          <input type="number" step="0.01" name="open" required />
+
+          <label for="high">High Price</label>
+          <input type="number" step="0.01" name="high" required />
+
+          <label for="low">Low Price</label>
+          <input type="number" step="0.01" name="low" required />
+
+          <label for="volume">Volume</label>
+          <input type="number" name="volume" required />
+
+          <button class="predict-btn" type="submit">Predict ➜</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      ⓒ 2025 Stock Predictor • All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      document.getElementById("app").classList.toggle("light");
+    }
+  </script>
+</body>
+</html>
